@@ -5,6 +5,16 @@ public class MenuManager {
     private ConsoleTools console = new ConsoleTools();
     private User user;
 
+    /**
+     * Displays the stock details to the user, and repeatedly asks the user
+     * which detail they would like to view.
+     *
+     * The user is presented with a menu of options to view the symbol,
+     * profile, news, or quote of the stock. The user is also given the
+     * option to go back to the previous menu or quit the program.
+     *
+     * @param stock The stock to display the details for.
+     */
     public void stockDetail(Stock stock) {
         Menu stockDetailMenu = new Menu("Which detail would you like to view?", """
             1. Symbol
@@ -22,6 +32,16 @@ public class MenuManager {
         stockDetail(stock);
     }
 
+    /**
+     * Displays a menu to the user to select a stock from their list of
+     * stocks.
+     *
+     * The user is presented with a menu of their stocks, and asked to enter
+     * the symbol of the stock they would like to view. The user is also given
+     * the option to go back to the previous menu or quit the program.
+     *
+     * @param message The message to display to the user.
+     */
     public void stock(String message) {
         Menu stockMenu = new Menu(message, user.listSymbols());
         String stockSymbol = stockMenu.menuSelect("Enter the stock's symbol: ");
@@ -37,6 +57,17 @@ public class MenuManager {
         stockDetail(stock);
         
     }
+
+    /**
+     * Prompts the user to add a new stock by entering its symbol.
+     *
+     * Displays a menu to the user to enter a new stock's symbol. If the symbol
+     * is not found in the Finnhub database, the user is prompted to enter a valid symbol.
+     * If the stock is already added to the user's list, the user is prompted to choose another stock.
+     * Once a valid, unique stock symbol is entered, the stock is added to the user's list and the main user menu is displayed.
+     *
+     * @param message The message to display to the user when prompting for a stock symbol.
+     */
 
     public void addStock(String message) {
         Menu addStockMenu = new Menu(message);
@@ -62,6 +93,16 @@ public class MenuManager {
         mainUser();
     }
 
+    /**
+     * Displays the main menu to the user, allowing them to add a stock, view
+     * their stocks, or quit the program.
+     *
+     * If the user has no stocks, they are prompted to add a stock first.
+     *
+     * The user is presented with a menu of options to add a stock, view their
+     * stocks, or quit the program. The user's choice is then used to determine
+     * which action to take.
+     */
     public void mainUser() {
         console.clear();
 
@@ -88,6 +129,14 @@ public class MenuManager {
         }
     }
 
+    /**
+     * Asks the user what they would like to do when they are unable to create an account
+     * because the username already exists.
+     *
+     * The user is presented with a menu of options to retry creating the account,
+     * login to an existing account, or quit the program. The user's choice is then
+     * used to determine which action to take.
+     */
     public void retryCreate() {
         console.clear();
 
@@ -110,6 +159,16 @@ public class MenuManager {
         }
     }
 
+    /**
+     * Asks the user what they would like to do when they fail to log in.
+     *
+     * The user is presented with a menu of options to retry logging in,
+     * create a new account, or quit the program. The user's choice is then
+     * used to determine which action to take.
+     *
+     * @param message The message to display to the user.
+     */
+
     public void retryLogin(String message) {
         console.clear();
 
@@ -131,6 +190,15 @@ public class MenuManager {
     } 
 
 
+    /**
+     * Prompts the user for their username and password, and attempts to authenticate
+     * them.
+     *
+     * If the user does not exist, the user is asked what they would like to do. If the
+     * user's credentials are incorrect, they are asked to retry. If the user is
+     * successfully authenticated, an instance of the User class is created and the
+     * user is sent to the main user menu.
+     */
     public void login() {
         console.clear();
 
@@ -159,6 +227,14 @@ public class MenuManager {
     }
 
 
+    /**
+     * Prompts the user for their desired username and password, and attempts to create
+     * a new user account.
+     *
+     * If the user already exists, the user is asked what they would like to do. If the
+     * user is successfully created, an instance of the User class is created and the
+     * user is sent to the main user menu.
+     */
     public void createAccount() {
         console.clear();
 
@@ -179,6 +255,12 @@ public class MenuManager {
         mainUser();
     }
 
+    /**
+     * The entry point for the program.
+     *
+     * Displays a menu with options to login, create an account, or quit the program.
+     * The user is repeatedly asked for their choice until a valid option is selected.
+     */
     public void start() {
         console.clear();
 

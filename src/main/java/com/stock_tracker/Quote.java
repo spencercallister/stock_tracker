@@ -21,6 +21,13 @@ public class Quote {
         this.t = t;
     }
 
+    /**
+     * Displays the quote details in a formatted string.
+     * 
+     * The formatted string includes the current price, change, percent change,
+     * day high, day low, open, and previous close, as well as the formatted date.
+     */
+
     public void displayQuote() {
         DateFormat dateFormat = new DateFormat();
         String formattedDateTime = dateFormat.localDateTime(t);

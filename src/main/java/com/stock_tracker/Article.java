@@ -24,6 +24,13 @@ public class Article {
     }
 
     
+    /**
+     * Display the article details to the user.
+     * 
+     * The article details are outputted in a formatted string and
+     * include the category, date posted, headline, related topics,
+     * source, summary, and URL.
+     */
     public void displayArticle() {
         DateFormat dateFormat = new DateFormat();
         String formattedDateTime = dateFormat.localDateTime(datetime);

@@ -19,6 +19,15 @@ public class Menu {
         System.out.println(this.message);
     }
 
+    /**
+     * Asks the user for a choice based on the given prompt.
+     * 
+     * The user is presented with the given prompt and asked to enter a choice.
+     * The choice is then returned.
+     * 
+     * @param prompt The message to display to the user.
+     * @return The user's choice.
+     */
     public String menuSelect(String prompt) {
         System.out.print(prompt);
         return reader.nextLine();

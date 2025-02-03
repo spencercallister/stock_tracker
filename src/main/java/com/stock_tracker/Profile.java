@@ -29,6 +29,14 @@ public class Profile {
         this.finnhubIndustry = finnhubIndustry;
     }
 
+    /**
+     * Displays the profile details to the user.
+     * 
+     * The profile details are outputted in a formatted string and
+     * include the country, currency, exchange, IPO, market capitalization,
+     * name, phone, share outstanding, ticker, web URL, logo, and Finnhub
+     * industry.
+     */
     public void displayProfile() {
         StringBuilder articleDisplay = new StringBuilder();
 

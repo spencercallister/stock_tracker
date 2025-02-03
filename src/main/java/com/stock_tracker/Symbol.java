@@ -13,6 +13,12 @@ public class Symbol {
         this.type = type;
     }
 
+    /**
+     * Displays the symbol details in a formatted string.
+     * 
+     * The formatted string includes the description, display symbol,
+     * symbol, and type of the symbol.
+     */
     public void displaySymbol() {
         StringBuilder articleDisplay = new StringBuilder();
 
@@ -28,6 +34,11 @@ public class Symbol {
         System.out.println(articleDisplay);
     }
 
+    /**
+     * Gets the symbol of this stock.
+     *
+     * @return the symbol of the stock
+     */
     public String getSymbol() {
         return symbol;
     }

@@ -6,9 +6,25 @@ public class News {
     private List<Article> news = new ArrayList<>();
     private ConsoleTools console = new ConsoleTools();
 
+/**
+ * Adds the given article to the list of news articles.
+ *
+ * @param article the article to be added to the news list
+ */
+
     public void addArticle(Article article) {
         news.add(article);
     }
+
+    /**
+     * Displays the list of news articles associated with a stock, allowing the user
+     * to navigate through the articles one by one. If the user presses Enter, the next
+     * article is displayed. If the user types anything, the function will return to the
+     * stock detail menu.
+     *
+     * @param menuManager the MenuManager instance used to navigate menus
+     * @param stock the Stock instance associated with the news articles
+     */
 
     public void displayNews(MenuManager menuManager, Stock stock) {
         Scanner scanner = new Scanner(System.in); 

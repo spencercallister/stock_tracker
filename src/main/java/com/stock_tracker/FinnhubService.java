@@ -26,6 +26,12 @@ public class FinnhubService {
         this.symbol = symbol;
     }
 
+    /**
+     * Makes a GET request to the Finnhub API for the given endpoint and returns the response body.
+     * 
+     * @param endpoint The Finnhub API endpoint to query, e.g. "quote", "profile", etc.
+     * @return The response body of the GET request
+     */
     public String RetrieveData(String endpoint) {
         String apiUrl = String.format(url, endpoint, apiKey);
         HttpClient client = HttpClient.newHttpClient();
@@ -44,6 +50,18 @@ public class FinnhubService {
         return data;
     }
 
+    /**
+     * Queries the Finnhub API for the given stock symbol and returns a Symbol
+     * object containing the symbol details.
+     *
+     * This method queries the Finnhub "search" endpoint for the given stock
+     * symbol. If the given symbol is found, it is parsed as JSON and converted
+     * to a Symbol object, which is then returned. If the given symbol is not
+     * found, this method returns null.
+     *
+     * @return The Symbol object associated with the given stock symbol, or null
+     * if not found
+     */
     public Symbol RetrieveSymbol() {
         String data = RetrieveData("search?q=" + symbol);
         JsonObject jsonObject = gson.fromJson(data, JsonObject.class);
@@ -59,11 +77,30 @@ public class FinnhubService {
         return null;
     }
 
+    /**
+     * Retrieves the profile information for the given stock symbol.
+     *
+     * This method queries the Finnhub "stock/profile2" endpoint for the given stock
+     * symbol and converts the JSON response into a Profile object.
+     * 
+     * @return The Profile object containing the profile information for the stock symbol.
+     */
+
     public Profile RetrieveProfile() {
         String data = RetrieveData("stock/profile2?symbol=" + symbol);
         return gson.fromJson(data, Profile.class);
     }
 
+    /**
+     * Retrieves the news information for the given stock symbol.
+     * 
+     * This method queries the Finnhub "company-news" endpoint for the given stock
+     * symbol and converts the JSON response into a News object.
+     * 
+     * The news query is limited to the last two weeks of news articles.
+     * 
+     * @return The News object containing the news articles for the stock symbol.
+     */
     public News RetrieveNews() {
         LocalDate currentDate = LocalDate.now();
         LocalDate lastTwoWeeks = currentDate.minusWeeks(2);
@@ -80,6 +117,14 @@ public class FinnhubService {
         return news;
     }
 
+    /**
+     * Retrieves the quote information for the given stock symbol.
+     * 
+     * This method queries the Finnhub "quote" endpoint for the given stock
+     * symbol and converts the JSON response into a Quote object.
+     * 
+     * @return The Quote object containing the quote information for the stock symbol.
+     */
     public Quote RetrieveQuote() {
         String data = RetrieveData("quote?symbol=" + symbol);
         return gson.fromJson(data, Quote.class);
